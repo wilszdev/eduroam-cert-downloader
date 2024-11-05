@@ -84,7 +84,7 @@ def save_cert(cert: bytes, filename: str):
     if filename:
         with open(filename, 'wb') as file:
             file.write(cert)
-        print(f'wrote downloaded CA certificate to: {filename}')
+        print(f'wrote downloaded CA cert to: {filename}')
 
 
 def main():
