@@ -12,6 +12,7 @@ permissions:
 
 jobs:
     build:
+        if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
         runs-on: ${{ matrix.os }}
 
         strategy:
@@ -49,6 +50,8 @@ jobs:
                   overwrite: true
 
     release:
+        needs: build
+        if: success()
         runs-on: ubuntu-latest
 
         steps:
