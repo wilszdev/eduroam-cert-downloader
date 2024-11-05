@@ -10,6 +10,8 @@ on:
 jobs:
     flake8:
         runs-on: ubuntu-latest
+        # prevent double-up for commits to a branch with an open PR
+        if: github.event_name == 'pull_request' || github.event_name == 'push' && github.ref != 'refs/heads/master'
 
         steps:
             - name: Checkout code
