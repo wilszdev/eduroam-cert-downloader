@@ -3,6 +3,7 @@ name: Flake8 Style Check
 on:
     push:
         branches: [ '**' ]
+        paths-ignore: [ 'master' ]
     pull_request:
         branches: [ '**' ]
 
