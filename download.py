@@ -88,12 +88,14 @@ def save_cert(cert: bytes, filename: str):
 
 def main():
     parser = argparse.ArgumentParser(description='eduroam CA cert downloader')
-    parser.add_argument('--search', '-s', type=str,
-            required=True, help='institution search keywords')
+    parser.add_argument('--search', '-s', type=str, required=True,
+                        help='institution search keywords')
     parser.add_argument('--output-file', '-o', type=str,
-            default='ca-cert.x509', help='output certificate file')
+                        default='ca-cert.x509',
+                        help='output certificate file')
     parser.add_argument('--discovery-file', '-f', type=str,
-            default='discovery.json', help='eduroam discovery json file')
+                        default='discovery.json',
+                        help='eduroam discovery json file')
     args = parser.parse_args()
 
     data = get_data(args.discovery_file)
