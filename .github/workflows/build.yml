@@ -39,7 +39,7 @@ jobs:
 
             - name: Build with PyInstaller
               run: |
-                  pyinstaller --onefile download.py
+                  pyinstaller --onefile --name=download-${{ matrix.os }} download.py
 
             - name: Upload Build Artifact
               uses: actions/upload-artifact@v4
