@@ -3,6 +3,9 @@ name: Nightly Build with PyInstaller
 on:
     push:
         branches: [ "master" ]
+    workflow-run:
+        workflows: [ "Flake8 Style Check" ]
+        types: [ completed ]
 
 permissions:
     contents: write
