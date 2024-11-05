@@ -68,13 +68,17 @@ def get_cert(profile: dict) -> bytes:
 
     data = xmltodict.parse(response.text)
 
-    cert = data['EAPIdentityProviderList']\
-               ['EAPIdentityProvider']\
-               ['AuthenticationMethods']\
-               ['AuthenticationMethod']\
-               ['ServerSideCredential']['CA']['#text']
+    keys = [
+            'EAPIdentityProviderList', 'EAPIdentityProvider',
+            'AuthenticationMethods', 'AuthenticationMethod',
+            'ServerSideCredential', 'CA', '#text'
+    ]
 
-    return base64.b64decode(cert)
+    for key in keys:
+        data = data[key]
+
+    return base64.b64decode(data)
+
 
 def save_cert(cert: bytes, filename: str):
     if filename:
@@ -96,6 +100,6 @@ def main():
     cert = get_cert(profile)
     save_cert(cert, args.output_file)
 
+
 if __name__ == '__main__':
     main()
-
